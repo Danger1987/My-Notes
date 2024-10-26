@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-
         centerTitle: true,
         title: const Text('Register'),
       ),

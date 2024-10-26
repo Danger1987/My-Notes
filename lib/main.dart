@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
         title: const Text('Register'),
+
       ),
       body: FutureBuilder(
         future: Firebase.initializeApp(

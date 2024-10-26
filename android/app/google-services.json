@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1036829545674",
+    "project_id": "my-notes-danger",
+    "storage_bucket": "my-notes-danger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036829545674:android:bf75f5dc15647e212d1033",
+        "android_client_info": {
+          "package_name": "com.example.my_notes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArMZu1AcJYStCr6PUAtGkwvUY4MlDqfQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

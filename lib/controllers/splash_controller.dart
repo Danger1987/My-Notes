@@ -13,8 +13,7 @@ class SplashController extends GetxController {
     await Future.delayed(Duration.zero);
     if (user != null) {
       if (user!.emailVerified) {
-        print('Email is Verified');
-        // Get.offAndToNamed(Routes.login);
+        Get.offAndToNamed(Routes.notes);
       } else {
         Get.offAndToNamed(Routes.verification);
       }

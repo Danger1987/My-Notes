@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_notes/page_routes/page_routes.dart';
 
 class LoginController extends GetxController {
   final FirebaseAuth firebase = FirebaseAuth.instance;
@@ -26,20 +27,24 @@ class LoginController extends GetxController {
     final password = passwordController.text;
 
     try {
-      final userCredentials = await firebase.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      print(userCredentials);
+      await firebase
+          .signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          )
+          .then(
+            (value) => Get.offAndToNamed(Routes.notes),
+          );
+      Get.offAndToNamed(Routes.notes);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
-        print('Invalid Credentials');
+        Get.snackbar('Invalid Credentials', 'Check Your Email & Password');
       } else if (e.code == 'channel-error') {
-        print('Please Enter Email and Password');
+        Get.snackbar('Empty', 'Enter Your Email & Password');
       } else if (e.code == 'invalid-email') {
-        print('Enter a Valid Email');
+        Get.snackbar('Invalid Email', 'Check Your Email');
       } else {
-        print(e.code);
+        Get.snackbar(e.code, e.message ?? '');
       }
     }
   }

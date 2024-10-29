@@ -21,7 +21,7 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  void logIn() async {
+  void register() async {
     final email = emailController.text;
     final password = passwordController.text;
 
@@ -32,11 +32,11 @@ class RegisterController extends GetxController {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('Weak Password');
+        Get.snackbar('Weak Password', 'Password Must Be Longer Than 6 Letters');
       } else if (e.code == 'email-already-in-use') {
-        print('Email Already In Use');
+        Get.snackbar('Invalid', 'Email Already In Use');
       } else {
-        print(e.code);
+        Get.snackbar(e.code, '');
       }
     }
   }

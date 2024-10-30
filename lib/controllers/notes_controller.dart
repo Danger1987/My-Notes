@@ -19,9 +19,11 @@ class NotesController extends GetxController {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () async {
-                      await firebase.signOut();
-                      Get.offAndToNamed(Routes.login);
+                    onPressed: () {
+                      firebase.signOut().then((value) {
+                        Get.back();
+                        Get.offAndToNamed(Routes.login);
+                      });
                     },
                     child: const Text(
                       'Yes',

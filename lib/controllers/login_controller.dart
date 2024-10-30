@@ -35,7 +35,6 @@ class LoginController extends GetxController {
           .then(
             (value) => Get.offAndToNamed(Routes.notes),
           );
-      Get.offAndToNamed(Routes.notes);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
         Get.snackbar('Invalid Credentials', 'Check Your Email & Password');

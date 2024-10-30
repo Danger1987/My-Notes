@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_notes/components/constants.dart';
 import 'package:my_notes/controllers/notes_controller.dart';
 
 class NotesPage extends GetView<NotesController> {
@@ -17,14 +18,22 @@ class NotesPage extends GetView<NotesController> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              controller.logOut();
+          PopupMenuButton<MenuAction>(
+            iconColor: Colors.white,
+            onSelected: (value) {
+              switch (value) {
+                case MenuAction.logout:
+                  controller.logOut();
+              }
             },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('Log Out'),
+                ),
+              ];
+            },
           ),
         ],
         backgroundColor: Colors.blue,

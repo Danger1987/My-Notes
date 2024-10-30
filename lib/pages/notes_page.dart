@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_notes/controllers/notes_controller.dart';
-import 'package:my_notes/page_routes/page_routes.dart';
 
 class NotesPage extends GetView<NotesController> {
   const NotesPage({super.key});
@@ -21,7 +20,6 @@ class NotesPage extends GetView<NotesController> {
           IconButton(
             onPressed: () {
               controller.logOut();
-              Get.offAndToNamed(Routes.login);
             },
             icon: const Icon(
               Icons.logout,

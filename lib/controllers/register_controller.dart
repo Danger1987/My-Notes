@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_notes/components/constants.dart';
+import 'package:my_notes/page_routes/page_routes.dart';
 
 class RegisterController extends GetxController {
   late final TextEditingController emailController;
@@ -26,10 +27,15 @@ class RegisterController extends GetxController {
     final password = passwordController.text;
 
     try {
-      final userCredentials = await firebase.createUserWithEmailAndPassword(
+      await firebase
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )
+          .then((value) async {
+        await user?.sendEmailVerification();
+        Get.toNamed(Routes.verification);
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Get.snackbar('Weak Password', 'Password Must Be Longer Than 6 Letters');

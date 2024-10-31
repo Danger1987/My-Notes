@@ -29,12 +29,19 @@ class LoginController extends GetxController {
     try {
       await firebase
           .signInWithEmailAndPassword(
-            email: email,
-            password: password,
-          )
+        email: email,
+        password: password,
+      )
           .then(
-            (value) => Get.offAndToNamed(Routes.notes),
-          );
+        (value) async {
+          if (user?.emailVerified ?? false) {
+            Get.offAndToNamed(Routes.notes);
+          } else {
+            await user?.sendEmailVerification();
+            Get.toNamed(Routes.verification);
+          }
+        },
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
         Get.snackbar('Invalid Credentials', 'Check Your Email & Password');
